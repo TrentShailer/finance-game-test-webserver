@@ -23,6 +23,13 @@
   dependencies:
     fast-json-stringify "^4.2.0"
 
+"@fastify/formbody@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@fastify/formbody/-/formbody-7.0.1.tgz#247a4a2c930d7cf97c912fbd228340cc85484dec"
+  integrity sha512-CY6IfzdtidHbZezyyXv7u9dzmb2Lv92HyOZDqANuFb++5ojsqoqIb8bJz11bSgPK0MDoqww/dH6DxZDMM8N4ng==
+  dependencies:
+    fastify-plugin "^3.0.0"
+
 "@fastify/postgres@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@fastify/postgres/-/postgres-5.0.0.tgz#41a8749fa2c6e512addf868dc16c30213959e5b0"

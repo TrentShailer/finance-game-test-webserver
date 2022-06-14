@@ -3,6 +3,7 @@ require("dotenv").config();
 import Fastify, { FastifyInstance } from "fastify";
 import fastifyStatic from "@fastify/static";
 import fastifyPostgres from "@fastify/postgres";
+import fastifyFormbody from "@fastify/formbody";
 import path from "path";
 
 import leaderboardRoute from "./leaderboardRoute";
@@ -15,6 +16,8 @@ fastify.addHook("preHandler", function (req, reply, done) {
 	}
 	done();
 });
+
+fastify.register(fastifyFormbody);
 
 fastify.register(fastifyPostgres, {
 	connectionString: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`,
