@@ -1,0 +1,5 @@
+CREATE TABLE scores (
+	score_id UUID PRIMARY KEY NOT NULL,
+	name VARCHAR NOT NULL,
+	score INT NOT NULL
+);

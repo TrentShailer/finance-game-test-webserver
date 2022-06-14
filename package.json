@@ -1,0 +1,22 @@
+{
+	"name": "finance-game-test-webserver",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"dependencies": {
+		"@fastify/postgres": "^5.0.0",
+		"@fastify/static": "^6.4.0",
+		"@types/node": "^17.0.42",
+		"@types/pg": "^8.6.5",
+		"@types/uuid": "^8.3.4",
+		"dotenv": "^16.0.1",
+		"fastify": "^4.0.2",
+		"pg": "^8.7.3",
+		"pino-pretty": "^8.0.0",
+		"typescript": "^4.7.3",
+		"uuid": "^8.3.2"
+	},
+	"scripts": {
+		"start": "tsc -p tsconfig.json & node index.js"
+	}
+}
