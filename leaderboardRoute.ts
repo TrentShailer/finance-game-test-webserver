@@ -47,6 +47,9 @@ async function leaderboardRoutes(fastify: FastifyInstance, options: any) {
 				break;
 			}
 		}
+		if (leaderboardQuery.rowCount == 0) {
+			betterScore = true;
+		}
 
 		if (betterScore) {
 			await client.query("INSERT INTO scores(score_id, name, score) VALUES($1, $2, $3);", [

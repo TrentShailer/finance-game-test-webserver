@@ -7,7 +7,14 @@ import path from "path";
 
 import leaderboardRoute from "./leaderboardRoute";
 
-const fastify: FastifyInstance = Fastify();
+const fastify: FastifyInstance = Fastify({ logger: true });
+
+fastify.addHook("preHandler", function (req, reply, done) {
+	if (req.body) {
+		req.log.info({ body: req.body }, "parsed body");
+	}
+	done();
+});
 
 fastify.register(fastifyPostgres, {
 	connectionString: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`,
