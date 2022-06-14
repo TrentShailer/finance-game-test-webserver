@@ -59,3 +59,4 @@ async function leaderboardRoutes(fastify: FastifyInstance, options: any) {
 		return reply.send(200);
 	});
 }
+export default leaderboardRoutes;

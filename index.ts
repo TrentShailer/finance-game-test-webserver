@@ -5,6 +5,8 @@ import fastifyStatic from "@fastify/static";
 import fastifyPostgres from "@fastify/postgres";
 import path from "path";
 
+import leaderboardRoute from "./leaderboardRoute";
+
 const fastify: FastifyInstance = Fastify();
 
 fastify.register(fastifyPostgres, {
@@ -15,6 +17,8 @@ fastify.register(fastifyStatic, { root: path.join(__dirname, "build") });
 fastify.setNotFoundHandler(async (request, reply) => {
 	reply.status(404).send("404 not found");
 });
+
+fastify.register(leaderboardRoute);
 
 const start = async () => {
 	try {
