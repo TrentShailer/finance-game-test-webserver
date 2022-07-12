@@ -31,9 +31,9 @@ function ValidateName(name: string): NameValidator {
 	if (name === undefined || name === null || name === "" || name.length < 1) {
 		nameValidator.valid = false;
 		nameValidator.reason = "You must enter a name";
-	} else if (name.length > 16) {
+	} else if (name.length > 12) {
 		nameValidator.valid = false;
-		nameValidator.reason = "Name is too long (max 16)";
+		nameValidator.reason = "Name is too long (max 12)";
 	} else if (filter.isProfane(name)) {
 		nameValidator.valid = false;
 		nameValidator.reason = "Name contains profanity";
@@ -58,7 +58,7 @@ async function leaderboardRoutes(fastify: FastifyInstance, options: any) {
 			score_id: string;
 			name: string;
 			score: number;
-		}>("SELECT score_id, name, score FROM scores ORDER BY score DESC LIMIT 10;");
+		}>("SELECT score_id, name, score FROM scores ORDER BY score DESC LIMIT 5;");
 
 		client.release();
 
@@ -79,7 +79,7 @@ async function leaderboardRoutes(fastify: FastifyInstance, options: any) {
 			score_id: string;
 			name: string;
 			score: number;
-		}>("SELECT score_id, name, score FROM scores ORDER BY score DESC LIMIT 10;");
+		}>("SELECT score_id, name, score FROM scores ORDER BY score DESC LIMIT 5;");
 
 		let betterScore = false;
 

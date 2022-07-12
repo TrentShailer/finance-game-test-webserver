@@ -4,6 +4,7 @@
 	"main": "index.js",
 	"license": "MIT",
 	"dependencies": {
+		"@fastify/compress": "^6.1.0",
 		"@fastify/formbody": "^7.0.1",
 		"@fastify/postgres": "^5.0.0",
 		"@fastify/static": "^6.4.0",
@@ -19,6 +20,7 @@
 		"uuid": "^8.3.2"
 	},
 	"scripts": {
-		"start": "tsc -p tsconfig.json & node index.js"
+		"start": "tsc -p tsconfig.json & node index.js",
+		"build": "tsc"
 	}
 }
