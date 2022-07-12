@@ -8,6 +8,7 @@ import fastifyCompress from "@fastify/compress";
 import path from "path";
 
 import leaderboardRoute from "./leaderboardRoute";
+import analyticsRoute from "./analyticsRoute";
 
 const fastify: FastifyInstance = Fastify({ logger: true });
 
@@ -24,25 +25,23 @@ fastify.register(fastifyPostgres, {
 	connectionString: `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost:${process.env.POSTGRES_PORT}/${process.env.POSTGRES_DB}`,
 });
 
-fastify.register(fastifyStatic, { root: path.join(__dirname, "build"), preCompressed: true, setHeaders:(res, path, stat)=>{
-	if(path.includes(".gz"))
-		res.setHeader("Content-Encoding", "gzip")
-	if(path.includes(".br"))
-		res.setHeader("Content-Encoding", "br")
-	
-	if(path.includes("wasm"))
-		res.setHeader("Content-Type", "application/wasm")
-}
+fastify.register(fastifyStatic, {
+	root: path.join(__dirname, "build"),
+	preCompressed: true,
+	setHeaders: (res, path, stat) => {
+		if (path.includes(".gz")) res.setHeader("Content-Encoding", "gzip");
+		if (path.includes(".br")) res.setHeader("Content-Encoding", "br");
+
+		if (path.includes("wasm")) res.setHeader("Content-Type", "application/wasm");
+	},
 });
-
-
-
 
 fastify.setNotFoundHandler(async (request, reply) => {
 	reply.status(404).send("404 not found");
 });
 
 fastify.register(leaderboardRoute);
+fastify.register(analyticsRoute);
 
 const start = async () => {
 	try {
